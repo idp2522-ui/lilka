@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DentalLife - Приватна Стоматологія</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            50: '#f0fafb',
+                            100: '#e6f7f8',
+                            500: '#00a3b8',
+                            600: '#028497',
+                            700: '#008096',
+                            800: '#006275',
+                        },
+                        navy: {
+                            800: '#0d233a',
+                            900: '#0a192f',
+                            950: '#061020',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        handwritten: ['Caveat', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #028497;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #008096;
+        }
+        .text-shadow {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-white antialiased selection:bg-teal-500 selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="text-teal-600 transition-transform group-hover:scale-105">
+                    <svg class="w-8 h-8 sm:w-9 sm:h-9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C8.5 2 6 4.5 6 7.5C6 10 7 12 8 14.5C9 17 9.5 21 12 21C14.5 21 15 17 16 14.5C17 12 18 10 18 7.5C18 4.5 15.5 2 12 2Z"></path>
+                        <path d="M9 9C9 9 10 11 12 11C14 11 15 9 15 9"></path>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-xl sm:text-2xl font-bold tracking-tight text-navy-800 leading-none">DentalLife</span>
+                    <span class="block text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-500 font-semibold mt-0.5">ПРИВАТНА СТОМАТОЛОГІЯ</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                <a href="#hero" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600 text-teal-600">Головна</a>
+                <a href="#services" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600">Послуги</a>
+                <a href="#about" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600">Про нас</a>
+                <a href="#doctors" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600">Лікарі</a>
+                <a href="#reviews" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600">Відгуки</a>
+                <a href="#contacts" class="hover:text-teal-600 transition-colors py-2 border-b-2 border-transparent hover:border-teal-600">Контакти</a>
+            </nav>
+
+            <!-- Phone & CTA -->
+            <div class="hidden sm:flex items-center space-x-6">
+                <a href="tel:+380981234567" class="flex items-center gap-2 text-sm font-semibold text-navy-800 hover:text-teal-600 transition-colors">
+                    <i data-lucide="phone" class="w-4 h-4 text-teal-600"></i>
+                    +38 (098) 123 45 67
+                </a>
+                <button onclick="openBookingModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-6 py-2.5 rounded-full shadow-md shadow-teal-600/20 hover:shadow-lg hover:shadow-teal-600/30 transition-all duration-200 transform hover:-translate-y-0.5 active:translate-y-0 text-sm">
+                    Записатися
+                </button>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 focus:outline-none">
+                <i data-lucide="menu" id="menuOpenIcon" class="w-6 h-6"></i>
+                <i data-lucide="x" id="menuCloseIcon" class="w-6 h-6 hidden"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-3 shadow-xl">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-teal-600">Головна</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-gray-700 hover:text-teal-600">Послуги</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-gray-700 hover:text-teal-600">Про нас</a>
+            <a href="#doctors" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-gray-700 hover:text-teal-600">Лікарі</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-gray-700 hover:text-teal-600">Відгуки</a>
+            <a href="#contacts" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-gray-700 hover:text-teal-600">Контакти</a>
+            <div class="pt-4 border-t border-gray-100 flex flex-col gap-3">
+                <a href="tel:+380981234567" class="flex items-center gap-2 text-sm font-semibold text-navy-800 py-1">
+                    <i data-lucide="phone" class="w-4 h-4 text-teal-600"></i>
+                    +38 (098) 123 45 67
+                </a>
+                <button onclick="toggleMobileMenu(); openBookingModal()" class="w-full bg-teal-600 text-white font-medium py-3 rounded-xl text-center shadow-md">
+                    Записатися на прийом
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO SECTION -->
+    <section id="hero" class="relative bg-gradient-to-b from-teal-50/70 via-white to-white overflow-hidden pt-8 pb-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-6 space-y-6 lg:space-y-8">
+                    <div class="inline-block">
+                        <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-700 bg-teal-100/80 px-3.5 py-1.5 rounded-full border border-teal-200/50">
+                            Стоматологія для всієї родини
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-navy-800 tracking-tight leading-[1.15]">
+                        Здорові усмішки починаються тут
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-xl">
+                        Комфортне лікування, турботливі лікарі та сучасні технології — щоб ви посміхалися впевнено.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button onclick="openBookingModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-7 py-3.5 rounded-full shadow-lg shadow-teal-600/25 hover:shadow-xl hover:shadow-teal-600/35 transition-all transform hover:-translate-y-0.5 active:translate-y-0">
+                            Записатися на прийом
+                        </button>
+                        <a href="#services" class="inline-flex items-center gap-2 font-medium text-navy-800 hover:text-teal-600 transition-colors px-4 py-3 group">
+                            Дізнатися більше
+                            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+
+                    <!-- Trust Rating Banner -->
+                    <div class="pt-6 border-t border-gray-200/80 flex items-center gap-4">
+                        <div class="flex -space-x-2 overflow-hidden">
+                            <span class="inline-block h-9 w-9 rounded-full ring-2 ring-white bg-teal-200 flex items-center justify-center font-bold text-xs text-teal-800">ОК</span>
+                            <span class="inline-block h-9 w-9 rounded-full ring-2 ring-white bg-teal-300 flex items-center justify-center font-bold text-xs text-teal-900">МП</span>
+                            <span class="inline-block h-9 w-9 rounded-full ring-2 ring-white bg-teal-400 flex items-center justify-center font-bold text-xs text-teal-950">ІС</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="font-bold text-navy-800 text-sm">4.9</span>
+                                <div class="flex text-amber-400">
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                                    <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-0.5">понад 1 200 відгуків</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Image with Floating Badge -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-lg lg:max-w-none rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1000" 
+                             alt="Стоматолог та пацієнт" 
+                             class="w-full h-[380px] sm:h-[480px] object-cover object-center"
+                             onerror="this.src='https://placehold.co/800x600/028497/ffffff?text=DentalLife+Clinic'">
+                        
+                        <!-- Soft Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+
+                        <!-- Badge Overlay -->
+                        <div class="absolute bottom-6 left-6 right-6 sm:right-auto bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-gray-100/80 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="check-circle-2" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-navy-800">Без болю і стресу</h4>
+                                <p class="text-xs text-gray-500">Дбайливе та безпечне лікування</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Quick Feature Cards Row -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 bg-white rounded-2xl p-6 shadow-xl shadow-gray-100 border border-gray-100">
+                <div class="flex items-center gap-4 p-2">
+                    <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-navy-800 text-base">Сучасне обладнання</h3>
+                        <p class="text-xs text-gray-500">і цифрові технології</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-2 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0">
+                    <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0 font-extrabold text-lg">
+                        7+
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-navy-800 text-base">Досвідчені лікарі</h3>
+                        <p class="text-xs text-gray-500">з міжнародною практикою</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 p-2 border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0">
+                    <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center shrink-0">
+                        <i data-lucide="heart" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-navy-800 text-base">Індивідуальний підхід</h3>
+                        <p class="text-xs text-gray-500">до кожного пацієнта</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 2: SERVICES SECTION -->
+    <section id="services" class="py-20 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-700">ТУРБОТА НА КОЖНОМУ ЕТАПІ</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 mt-2">Наші послуги</h2>
+                </div>
+                <p class="text-gray-600 text-sm sm:text-base max-w-md mt-4 md:mt-0">
+                    Повний спектр стоматологічних послуг — від профілактики до складного протезування.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Service Card 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">01</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Терапевтична стоматологія</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Лікування карієсу, пульпіту, якісна запломбованість та естетичне відновлення форми зубів.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Терапевтична стоматологія', 'Сучасні терапевтичні методи дозволяють безболісно зупинити руйнування зуба. Ми використовуємо світлокомпозитні матеріали останнього покоління та коффердам для ідеальної ізоляції.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">02</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Хірургічна стоматологія</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Делікатне та безболісне видалення зубів будь-якої складності та сучасна імплантація.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Хірургічна стоматологія', 'Хірургія в DentalLife — це максимум комфорту та атравматичні методики. Ми виконуємо імплантацію провідними світовими системами Straumann та Megagen.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">03</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Ортопедична стоматологія</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Вініри, керамічні коронки та естетичне протезування для створення бездоганної усмішки.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Ортопедична стоматологія', 'Відновлюємо цілісність та естетику зубного ряду за допомогою ультратонких керамічних вінірів, цирконієвих коронок і накладок.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">04</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Ортодонтія</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Сучасні брекет-системи й прозорі елайнери для виправлення прикусу дорослим та дітям.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Ортодонтія', 'Виправлення прикусу будь-якої складності. Працюємо з металевими, керамічними, самолігуючими брекетами та непомітними елайнерами.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Service Card 5 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">05</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Профілактика</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Професійна гігієна Air Flow, ультразвукове чищення, фторування та планові чекапи.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Профілактика', 'Професійна гігієна порожнини рота за протоколом GBT (Guided Biofilm Therapy) — це дбайливе усунення зубного нальоту та каменю.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Service Card 6 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <span class="inline-block text-xs font-bold text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-6">06</span>
+                        <h3 class="text-xl font-bold text-navy-800 mb-3 group-hover:text-teal-600 transition-colors">Дитяча стоматологія</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                            Турботливе лікування без страху та сліз для найменших пацієнтів у формі гри.
+                        </p>
+                    </div>
+                    <button onclick="openServiceDetail('Дитяча стоматологія', 'Спеціалізований прийом для дітей із психологічною адаптацією. Безболісна анестезія, лікування молочних зубів, герметизація фісур.')" class="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 hover:text-teal-800 self-start group-hover:underline">
+                        Детальніше <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: ABOUT US SECTION -->
+    <section id="about" class="py-20 bg-teal-50/40 border-y border-teal-100/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Image Block with Stat Accent -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&q=80&w=1000" 
+                             alt="Кабінет клініки DentalLife" 
+                             class="w-full h-[400px] sm:h-[500px] object-cover"
+                             onerror="this.src='https://placehold.co/800x600/0d233a/ffffff?text=DentalLife+Interior'">
+                    </div>
+
+                    <!-- Overlay Box -->
+                    <div class="absolute -bottom-6 -right-2 sm:right-6 bg-teal-700 text-white p-6 rounded-2xl shadow-xl max-w-[240px]">
+                        <p class="text-2xl sm:text-3xl font-black tracking-tight leading-none mb-1">10 000+</p>
+                        <p class="text-xs font-medium uppercase tracking-wider text-teal-100 leading-snug">ЩАСЛИВИХ ПАЦІЄНТІВ</p>
+                    </div>
+                </div>
+
+                <!-- Right Text Block -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div>
+                        <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-700">ПРО КЛІНІКУ DENTALLIFE</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 mt-2">
+                            Місце, де вам справді спокійно
+                        </h2>
+                    </div>
+
+                    <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                        Ми поєднали доказову медицину, точні технології та людяне ставлення. Пояснюємо кожен крок, пропонуємо чесний план лікування й завжди поважаємо ваш вибір.
+                    </p>
+
+                    <!-- Features Checklist -->
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-navy-800">Лікування за міжнародними протоколами</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-navy-800">Прозорий план і фіксована вартість</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-5 h-5 rounded-full bg-teal-100 text-teal-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="check" class="w-3.5 h-3.5 stroke-[3]"></i>
+                            </div>
+                            <span class="text-sm font-semibold text-navy-800">Гарантія на виконані роботи</span>
+                        </div>
+                    </div>
+
+                    <!-- Counter Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-8 border-t border-teal-200/60">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-navy-800">8</span>
+                            <span class="text-xs text-gray-500 font-medium">лікарів у команді</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-navy-800">7+</span>
+                            <span class="text-xs text-gray-500 font-medium">років роботи</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-navy-800">100%</span>
+                            <span class="text-xs text-gray-500 font-medium">інфекційна безпека</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: DOCTORS SECTION (Interactive Accordion / Dynamic Display) -->
+    <section id="doctors" class="py-20 bg-navy-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-400">КОМАНДА, ЯКІЙ ДОВІРЯЮТЬ</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+                    Вашу усмішку створюють професіонали
+                </h2>
+            </div>
+
+            <!-- Doctor Dynamic Interactive Showcase -->
+            <div class="grid lg:grid-cols-12 rounded-3xl overflow-hidden bg-navy-900 border border-slate-700/60 shadow-2xl">
+                
+                <!-- Active Doctor Details Panel (Left Column) -->
+                <div class="lg:col-span-7 bg-navy-900 p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-center border-b lg:border-b-0 lg:border-r border-slate-700/60">
+                    <div class="w-full sm:w-1/2 aspect-[4/5] rounded-2xl overflow-hidden border-2 border-teal-500/30 shrink-0">
+                        <img id="docImage" 
+                             src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600" 
+                             alt="Анна Коваль" 
+                             class="w-full h-full object-cover transition-opacity duration-300">
+                    </div>
+
+                    <div class="flex flex-col justify-between h-full space-y-6 w-full">
+                        <div>
+                            <span id="docBadge" class="text-xs font-bold uppercase tracking-wider text-teal-400 block mb-1">ГОЛОВНА ЛІКАРКА</span>
+                            <h3 id="docName" class="text-2xl sm:text-3xl font-bold text-white mb-1">Анна Коваль</h3>
+                            <p id="docSpecialty" class="text-xs text-gray-300 font-medium">Стоматолог-терапевт, ендодонтист</p>
+                            
+                            <!-- Handwritten Quote Style -->
+                            <p id="docQuote" class="text-teal-200 font-handwritten text-xl sm:text-2xl leading-relaxed mt-6 italic">
+                                «Моя мета — не просто вилікувати зуб, а зробити так, щоб людина більше не боялася стоматологів».
+                            </p>
+                        </div>
+
+                        <div>
+                            <div class="grid grid-cols-2 gap-4 py-4 border-t border-slate-700/60 mb-6">
+                                <div>
+                                    <span id="docExp" class="block text-xl font-bold text-white">12 років</span>
+                                    <span class="text-[11px] text-gray-400 uppercase">досвіду</span>
+                                </div>
+                                <div>
+                                    <span id="docPatients" class="block text-xl font-bold text-white">3 500+</span>
+                                    <span class="text-[11px] text-gray-400 uppercase">пацієнтів</span>
+                                </div>
+                            </div>
+
+                            <button onclick="bookingForDoctor()" class="w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-3 px-6 rounded-xl transition-all shadow-md text-sm">
+                                Записатися до лікаря
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Doctors Selection List (Right Column) -->
+                <div class="lg:col-span-5 divide-y divide-slate-800">
+                    
+                    <!-- Doctor Item 1 -->
+                    <div onclick="selectDoctor(0)" id="docTab-0" class="doc-tab p-6 hover:bg-slate-800/80 cursor-pointer transition-colors flex items-center justify-between bg-slate-800/40 border-l-4 border-teal-500">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-teal-400">01</span>
+                                <h4 class="font-bold text-white text-base">Анна Коваль</h4>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1 pl-7">Головна лікарка, терапевт</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+
+                    <!-- Doctor Item 2 -->
+                    <div onclick="selectDoctor(1)" id="docTab-1" class="doc-tab p-6 hover:bg-slate-800/80 cursor-pointer transition-colors flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-teal-400">02</span>
+                                <h4 class="font-bold text-white text-base">Олександр Мельник</h4>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1 pl-7">Хірург-імплантолог</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+
+                    <!-- Doctor Item 3 -->
+                    <div onclick="selectDoctor(2)" id="docTab-2" class="doc-tab p-6 hover:bg-slate-800/80 cursor-pointer transition-colors flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-teal-400">03</span>
+                                <h4 class="font-bold text-white text-base">Марія Бондар</h4>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1 pl-7">Ортодонт</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+
+                    <!-- Doctor Item 4 -->
+                    <div onclick="selectDoctor(3)" id="docTab-3" class="doc-tab p-6 hover:bg-slate-800/80 cursor-pointer transition-colors flex items-center justify-between">
+                        <div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-xs font-bold text-teal-400">04</span>
+                                <h4 class="font-bold text-white text-base">Софія Левченко</h4>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-1 pl-7">Дитяча лікарка</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: REVIEWS SECTION -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-700">ВІДГУКИ НАШИХ ПАЦІЄНТІВ</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-800 mt-2">
+                    Вони вже посміхаються впевнено
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Review Card 1 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg shadow-gray-100 flex flex-col justify-between">
+                    <div>
+                        <!-- Rating Stars -->
+                        <div class="flex text-amber-400 mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8 italic">
+                            «Лікування пройшло легко й безболісно. Лікар усе пояснила, а результат перевершив очікування.»
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                            О
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-navy-800 text-sm">Олена К.</h4>
+                            <p class="text-xs text-gray-400">Пацієнт DentalLife</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 2 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg shadow-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8 italic">
+                            «Встановлював імплант — усе чітко, професійно та з турботою. Щиро рекомендую DentalLife.»
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                            М
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-navy-800 text-sm">Максим П.</h4>
+                            <p class="text-xs text-gray-400">Пацієнт DentalLife</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review Card 3 -->
+                <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-lg shadow-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 mb-6">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-8 italic">
+                            «Дитина йде до стоматолога без страху. Тут справді вміють знайти підхід до маленьких пацієнтів.»
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center font-bold text-sm">
+                            І
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-navy-800 text-sm">Ірина С.</h4>
+                            <p class="text-xs text-gray-400">Пацієнт DentalLife</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CALL TO ACTION BANNER & CONTACTS -->
+    <section id="contacts" class="py-16 bg-gray-50/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-teal-50 via-teal-100/60 to-teal-50 rounded-3xl p-8 sm:p-12 lg:p-16 border border-teal-200/50 shadow-sm">
+                <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <!-- Left Banner Text -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-teal-700">ЗРОБІТЬ ПЕРШИЙ КРОК</span>
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-800 leading-tight">
+                            Готові до здорової усмішки?
+                        </h2>
+                        <p class="text-gray-600 text-sm sm:text-base max-w-lg">
+                            Запишіться на консультацію — ми підберемо найкраще рішення саме для вас.
+                        </p>
+                        <div class="pt-2">
+                            <button onclick="openBookingModal()" class="bg-teal-600 hover:bg-teal-700 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg shadow-teal-600/25 hover:shadow-xl transition-all">
+                                Записатися на прийом
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Contact Info Stack -->
+                    <div class="lg:col-span-5 bg-white/80 backdrop-blur-sm p-6 sm:p-8 rounded-2xl border border-white/80 shadow-md space-y-6">
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">ТЕЛЕФОН</span>
+                                <a href="tel:+380981234567" class="text-base font-bold text-navy-800 hover:text-teal-600 transition-colors">
+                                    +38 (098) 123 45 67
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 border-t border-gray-100 pt-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="map-pin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">АДРЕСА</span>
+                                <p class="text-base font-bold text-navy-800">
+                                    м. Київ, вул. Соборна, 12
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 border-t border-gray-100 pt-4">
+                            <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center shrink-0 mt-0.5">
+                                <i data-lucide="clock" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block">ГРАФІК РОБОТИ</span>
+                                <p class="text-base font-bold text-navy-800">
+                                    Пн–Сб, 08:00–20:00
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-gray-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <!-- Footer Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="text-teal-400">
+                        <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2C8.5 2 6 4.5 6 7.5C6 10 7 12 8 14.5C9 17 9.5 21 12 21C14.5 21 15 17 16 14.5C17 12 18 10 18 7.5C18 4.5 15.5 2 12 2Z"></path>
+                            <path d="M9 9C9 9 10 11 12 11C14 11 15 9 15 9"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="block text-xl font-bold tracking-tight text-white leading-none">DentalLife</span>
+                        <span class="block text-[9px] uppercase tracking-wider text-gray-400 font-semibold mt-0.5">ПРИВАТНА СТОМАТОЛОГІЯ</span>
+                    </div>
+                </div>
+
+                <!-- Tagline -->
+                <p class="text-sm text-gray-400 text-center md:text-left">
+                    Турбота про здоров'я ваших зубів щодня.
+                </p>
+
+                <!-- Copyright -->
+                <p class="text-xs text-gray-500">
+                    © 2025 DentalLife. Усі права захищені.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- INTERACTIVE MODAL 1: APPOINTMENT BOOKING -->
+    <div id="bookingModal" class="fixed inset-0 z-50 hidden bg-navy-950/70 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-in fade-in zoom-in-95 duration-200 my-8">
+            
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100 transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <!-- Form Screen -->
+            <div id="bookingFormScreen">
+                <div class="mb-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-teal-600">ОНЛАЙН-ЗАПИС</span>
+                    <h3 class="text-2xl font-bold text-navy-800 mt-1">Запис на прийом</h3>
+                    <p class="text-xs text-gray-500 mt-1">Заповніть форму і ми зателефонуємо вам для підтвердження</p>
+                </div>
+
+                <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Ваше ім'я *</label>
+                        <input type="text" required placeholder="Олена Олексіївна" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Номер телефону *</label>
+                        <input type="tel" required placeholder="+38 (000) 000 00 00" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Послуга</label>
+                        <select id="modalServiceSelect" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all bg-white">
+                            <option value="consultation">Консультація та чекап</option>
+                            <option value="therapy">Терапевтична стоматологія</option>
+                            <option value="surgery">Хірургія та імплантація</option>
+                            <option value="orthodontics">Ортодонтія (Брекети/Елайнери)</option>
+                            <option value="orthopedics">Вініри та коронки</option>
+                            <option value="pediatric">Дитяча стоматологія</option>
+                            <option value="hygiene">Професійна гігієна</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Бажаний лікар</label>
+                        <select id="modalDoctorSelect" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all bg-white">
+                            <option value="any">Будь-який вільний лікар</option>
+                            <option value="Анна Коваль">Анна Коваль (Терапевт)</option>
+                            <option value="Олександр Мельник">Олександр Мельник (Хірург)</option>
+                            <option value="Марія Бондар">Марія Бондар (Ортодонт)</option>
+                            <option value="Софія Левченко">Софія Левченко (Дитячий лікар)</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Дата</label>
+                            <input type="date" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Час</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-sm outline-none transition-all bg-white">
+                                <option>09:00</option>
+                                <option>11:00</option>
+                                <option>14:00</option>
+                                <option>16:00</option>
+                                <option>18:00</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md mt-4 text-sm">
+                        Підтвердити запис
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Screen -->
+            <div id="bookingSuccessScreen" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto">
+                    <i data-lucide="check-circle" class="w-10 h-10"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-navy-800">Заявку прийнято!</h3>
+                <p class="text-sm text-gray-600 max-w-xs mx-auto">
+                    Дякуємо! Наш адміністратор зателефонує вам протягом 15 хвилин для підтвердження часу.
+                </p>
+                <button onclick="closeBookingModal()" class="bg-navy-800 hover:bg-navy-900 text-white px-8 py-2.5 rounded-xl font-medium text-sm transition-colors mt-4">
+                    Зрозуміло
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- INTERACTIVE MODAL 2: SERVICE DETAILS -->
+    <div id="serviceModal" class="fixed inset-0 z-50 hidden bg-navy-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeServiceModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 p-1 rounded-full hover:bg-gray-100">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+
+            <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mb-4">
+                <i data-lucide="info" class="w-6 h-6"></i>
+            </div>
+
+            <h3 id="serviceModalTitle" class="text-2xl font-bold text-navy-800 mb-3">Назва послуги</h3>
+            <p id="serviceModalDesc" class="text-sm text-gray-600 leading-relaxed mb-6">
+                Детальний опис послуги буде показано тут.
+            </p>
+
+            <div class="flex gap-3">
+                <button onclick="closeServiceModal(); openBookingModal();" class="flex-1 bg-teal-600 hover:bg-teal-700 text-white font-medium py-3 rounded-xl text-center text-sm shadow-md">
+                    Записатися
+                </button>
+                <button onclick="closeServiceModal()" class="px-5 py-3 border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-xl font-medium text-sm">
+                    Закрити
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Doctors Data Array
+        const doctorsData = [
+            {
+                badge: "ГОЛОВНА ЛІКАРКА",
+                name: "Анна Коваль",
+                specialty: "Стоматолог-терапевт, ендодонтист",
+                quote: "«Моя мета — не просто вилікувати зуб, а зробити так, щоб людина більше не боялася стоматологів».",
+                experience: "12 років",
+                patients: "3 500+",
+                image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=600"
+            },
+            {
+                badge: "ПРОПОВІДНИК ТЕХНОЛОГІЙ",
+                name: "Олександр Мельник",
+                specialty: "Хірург-імплантолог, щелепно-лицьовий хірург",
+                quote: "«Імплантація — це мистецтво повернення повноцінного життя та впевненості у кожному русі».",
+                experience: "10 років",
+                patients: "2 800+",
+                image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=600"
+            },
+            {
+                badge: "АРХІТЕКТОР УСМІШОК",
+                name: "Марія Бондар",
+                specialty: "Стоматолог-ортодонт",
+                quote: "«Ідеальний прикус — це не лише краса, це здоров'я всього організму на все життя».",
+                experience: "8 років",
+                patients: "1 900+",
+                image: "https://images.unsplash.com/photo-1594824813566-78a0505a4170?auto=format&fit=crop&q=80&w=600"
+            },
+            {
+                badge: "ДИТЯЧИЙ ДРУГ",
+                name: "Софія Левченко",
+                specialty: "Дитяча лікарка-стоматолог",
+                quote: "«Кожен маленький пацієнт для мене — це супергерой, з яким ми разом долаємо монстрів-карієсів».",
+                experience: "6 років",
+                patients: "1 500+",
+                image: "https://images.unsplash.com/photo-1594824813566-78a0505a4170?auto=format&fit=crop&q=80&w=600"
+            }
+        ];
+
+        let selectedDoctorIndex = 0;
+
+        // Dynamic Doctor Selection
+        function selectDoctor(index) {
+            selectedDoctorIndex = index;
+            const doc = doctorsData[index];
+
+            // Animate transition
+            const img = document.getElementById('docImage');
+            img.style.opacity = '0';
+
+            setTimeout(() => {
+                document.getElementById('docBadge').innerText = doc.badge;
+                document.getElementById('docName').innerText = doc.name;
+                document.getElementById('docSpecialty').innerText = doc.specialty;
+                document.getElementById('docQuote').innerText = doc.quote;
+                document.getElementById('docExp').innerText = doc.experience;
+                document.getElementById('docPatients').innerText = doc.patients;
+                img.src = doc.image;
+                img.onerror = () => { img.src = 'https://placehold.co/600x800/0d233a/ffffff?text=' + encodeURIComponent(doc.name); };
+                img.style.opacity = '1';
+            }, 150);
+
+            // Update tabs styling
+            const tabs = document.querySelectorAll('.doc-tab');
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('bg-slate-800/40', 'border-l-4', 'border-teal-500');
+                } else {
+                    tab.classList.remove('bg-slate-800/40', 'border-l-4', 'border-teal-500');
+                }
+            });
+        }
+
+        function bookingForDoctor() {
+            const doc = doctorsData[selectedDoctorIndex];
+            const select = document.getElementById('modalDoctorSelect');
+            if (select) {
+                select.value = doc.name;
+            }
+            openBookingModal();
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const openIcon = document.getElementById('menuOpenIcon');
+            const closeIcon = document.getElementById('menuCloseIcon');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                openIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+                openIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // Modal Functions
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.remove('hidden');
+            document.getElementById('bookingFormScreen').classList.remove('hidden');
+            document.getElementById('bookingSuccessScreen').classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleBookingSubmit(event) {
+            event.preventDefault();
+            document.getElementById('bookingFormScreen').classList.add('hidden');
+            document.getElementById('bookingSuccessScreen').classList.remove('hidden');
+        }
+
+        function openServiceDetail(title, description) {
+            document.getElementById('serviceModalTitle').innerText = title;
+            document.getElementById('serviceModalDesc').innerText = description;
+            document.getElementById('serviceModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeServiceModal() {
+            document.getElementById('serviceModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close Modals on Outer Click
+        window.onclick = function(event) {
+            const bModal = document.getElementById('bookingModal');
+            const sModal = document.getElementById('serviceModal');
+            if (event.target === bModal) {
+                closeBookingModal();
+            }
+            if (event.target === sModal) {
+                closeServiceModal();
+            }
+        }
+    </script>
+</body>
+</html>
